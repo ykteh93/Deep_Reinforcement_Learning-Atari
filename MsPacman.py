@@ -13,24 +13,24 @@ from collections import deque
 from tensorflow.contrib.layers import convolution2d, fully_connected
 
 env = gym.make("MsPacman-v3")		# Atari Games Selection
-max_score = 0						# Initialized the best score as 0, so that 
-n_steps = 1000000					# Train for 1 millions steps (can increase for more if have better GPU)
-batch_size = 64						# Mini batch size used for optimization
-discount_rate = 0.99				# Discount rate (control the value of the reward for ner future or distant future)
+max_score = 0				# Initialized the best score as 0, so that 
+n_steps = 1000000			# Train for 1 millions steps (can increase for more if have better GPU)
+batch_size = 64				# Mini batch size used for optimization
+discount_rate = 0.99			# Discount rate (control the value of the reward for ner future or distant future)
 done = True
-test_episode = 100					# Number of test episodes to run for evaluation because each episode is stostatic
-replay_memory_size = 250000			# Size of the Experience Replay to store the previous episodes for more stable gradient update
-replay_memory = deque()				# To store of the details of episodes in Experience Replay
-input_height = 60					# Size of the image height (This is the reduced height in order to conserve memory, therefore can increased for more for better performance)
-input_width = 60					# Size of the image width  (This is the reduced width  in order to conserve memory, therefore can increased for more for better performance)
-input_channels = 4  				# The number of frame to stack together in order to capture the motion
-conv_n_maps = [16, 32]				# Size of the kernel/filter for CNN
+test_episode = 100			# Number of test episodes to run for evaluation because each episode is stostatic
+replay_memory_size = 250000		# Size of the Experience Replay to store the previous episodes for more stable gradient update
+replay_memory = deque()			# To store of the details of episodes in Experience Replay
+input_height = 60			# Size of the reduced image height (to conserve memory, can increased for more for better performance)
+input_width = 60			# Size of the reduced image width  (to conserve memory, can increased for more for better performance)
+input_channels = 4  			# The number of frame to stack together in order to capture the motion
+conv_n_maps = [16, 32]			# Size of the kernel/filter for CNN
 conv_kernel_sizes = [(6,6), (4,4)]	# 
-conv_strides = [2, 2]				# Number of strides for the kernel/filter to slide across image
+conv_strides = [2, 2]			# Number of strides for the kernel/filter to slide across image
 conv_paddings = ["SAME"] * 2		# Padding choice 
 conv_activation = [tf.nn.relu] * 2	# Activation for CNN (RELU is used here)
 n_hidden_inputs = 32 * 15 * 15
-n_hidden = 256 						# Number of hidden layer
+n_hidden = 256 				# Number of hidden layer
 hidden_activation = tf.nn.relu 		# Activation for hidden layer (RELU is also used here)
 n_outputs = env.action_space.n  	# Number of possible output for the game (this is different for each game)
 
