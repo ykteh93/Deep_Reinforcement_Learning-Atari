@@ -4,7 +4,7 @@ Deep Q-Network (DQN) to play classic Atari Games
 3 Atari games (MsPacman, Boxing and Pong) are being tested with the same architecture of Q-learning.
 <dl>
   <dt>Note:</dt>
-  <dd>This is a smaller network with shorter training times than commonly used for accomodating the training with normal PC.</dd>
+  This is a smaller network with shorter training times than commonly used for accomodating the training with normal PC.
 </dl>
 <br><br/>
 The key details of the architecture is as follow:
