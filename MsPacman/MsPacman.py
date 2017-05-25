@@ -1,7 +1,7 @@
 #########################################################################################################################
-#								Written by: Yih Kai Teh					#
+#					  Written by: Yih Kai Teh							#
 #															#
-#	This project is from one of my modules (Advanced Topic in Machine Learning) at UCL taught by Google DeepMind	#
+#      This project is from one of my modules (Advanced Topic in Machine Learning) at UCL taught by Google DeepMind	#
 #															#
 #########################################################################################################################
 
@@ -22,11 +22,11 @@ env = gym.make("MsPacman-v3")				# atari games selection
 max_score = 0						# initialized the best score as 0, so that 
 n_steps = 1000000					# train for 1 millions steps (can increase for more if have better GPU)
 batch_size = 64						# mini batch size used for optimization
-discount_rate = 0.99					# discount rate (control the value of the reward for ner future or distant future)
-test_episode = 100					# number of test episodes to run for evaluation because each episode is stostatic
-replay_memory_size = 250000				# size of the Experience Replay to store the previous episodes for more stable gradient update
+discount_rate = 0.99					# discount rate (control the value of reward for near future or distant future)
+test_episode = 100					# number of test episodes to run for evaluation as each episode is stostatic
+replay_memory_size = 250000				# size of the Experience Replay to store the previous episodes 
 replay_memory = deque()					# store of the details of episodes in Experience Replay
-input_height = input_width = 28				# size of the reduced image height and width (to conserve memory, can increased for better performance)
+input_height = input_width = 28				# size of the reduced image height and width 
 input_channels = 4					# the number of frame to stack together in order to capture the motion
 conv_kernel_output_channel = [16, 32]			# output channel of kernel/filter for CNN
 conv_kernel_sizes = [(6,6), (4,4)]			# size of the kernel/filter for CNN
@@ -37,11 +37,11 @@ n_hidden_inputs = input_height * input_width * 2	# size of the flatten layer
 n_hidden = 256						# number of hidden layer
 n_outputs = env.action_space.n				# number of possible output for the game (this is different for each game)
 
-initializer = tf.random_normal_initializer(seed=400, stddev=0.01)	# initializer for weight
-b_initializer = tf.constant_initializer(0.1)				# initializer for bias
-learning_rate = 0.0001																	# learning rate for the optimizater 
+initializer = tf.random_normal_initializer(seed=400, stddev=0.01)			# initializer for weight
+b_initializer = tf.constant_initializer(0.1)						# initializer for bias
+learning_rate = 0.0001									# learning rate for the optimizater 
 Total_Clip_Return = Total_Discounted_Return = Total_Loss = Total_Episode = np.array([])	# store the details of loss and return throughout the process for plotting the graph
-cummulative_loss = np.array([])															# store the cummulative loss for every 50k steps to monitor the loss 
+cummulative_loss = np.array([])								# store the cummulative loss for every 50k steps to monitor the loss 
 
 # Q network architecture (conv(6x6x16) -> RELU -> conv(4x4x32) -> RELU -> flatten -> hidden layer (256 units) -> RELU -> output layer(number of actions))
 def q_network(X_state, scope):
