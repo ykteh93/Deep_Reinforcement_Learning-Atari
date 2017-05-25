@@ -1,9 +1,9 @@
 #####################################################################################################################
-#								Written by: Yih Kai Teh																#
-#																													#
-#	This project is from one of my modules (Advanced Topic in Machine Learning) at UCL taught by Google DeepMind	#
-#																													#
-#					This file is only for evaluation, not for training												#
+#					Written by: Yih Kai Teh				     			    #
+#														    #
+#    This project is from one of my modules (Advanced Topic in Machine Learning) at UCL taught by Google DeepMind   #
+#														    #
+#				This file is only for evaluation, not for training				    #
 #####################################################################################################################
 
 
@@ -17,25 +17,25 @@ from skimage.color import rgb2gray
 from collections import deque
 from tensorflow.contrib.layers import convolution2d, fully_connected
 
-env = gym.make("MsPacman-v3")						# atari games selection
-n_steps = 1000000									# train for 1 millions steps (can increase for more if have better GPU)
-batch_size = 64										# mini batch size used for optimization
-discount_rate = 0.99								# discount rate (control the value of the reward for ner future or distant future)
-test_episode = 100									# number of test episodes to run for evaluation because each episode is stostatic
-input_height = input_width = 60						# size of the reduced image height and width (to conserve memory, can increased for better performance)
-input_channels = 4									# the number of frame to stack together in order to capture the motion
-conv_kernel_output_channel = [16, 32]				# output channel of kernel/filter for CNN
-conv_kernel_sizes = [(6,6), (4,4)]					# size of the kernel/filter for CNN
-conv_strides = [2, 2]								# number of strides for the kernel/filter to slide across image
-conv_paddings = ["SAME"] * 2						# padding choice 
-conv_activation = [tf.nn.relu] * 2					# activation for CNN (RELU is used here)
+env = gym.make("MsPacman-v3")				# atari games selection
+n_steps = 1000000					# train for 1 millions steps (can increase for more if have better GPU)
+batch_size = 64						# mini batch size used for optimization
+discount_rate = 0.99					# discount rate (control the value of reward for near future or distant future)
+test_episode = 100					# number of test episodes to run for evaluation as each episode is stostatic
+input_height = input_width = 60				# size of the reduced image height and width 
+input_channels = 4					# the number of frame to stack together in order to capture the motion
+conv_kernel_output_channel = [16, 32]			# output channel of kernel/filter for CNN
+conv_kernel_sizes = [(6,6), (4,4)]			# size of the kernel/filter for CNN
+conv_strides = [2, 2]					# number of strides for the kernel/filter to slide across image
+conv_paddings = ["SAME"] * 2				# padding choice 
+conv_activation = [tf.nn.relu] * 2			# activation for CNN (RELU is used here)
 n_hidden_inputs = input_height * input_width * 2	# size of the flatten layer
-n_hidden = 256										# number of hidden layer
-n_outputs = env.action_space.n						# number of possible output for the game (this is different for each game)
+n_hidden = 256						# number of hidden layer
+n_outputs = env.action_space.n				# number of possible output for the game (this is different for each game)
 
 initializer = tf.random_normal_initializer(seed=600, stddev=0.01)	# initializer for weight
-b_initializer = tf.constant_initializer(0.1)						# initializer for bias
-learning_rate = 0.0001												# learning rate for the optimizater
+b_initializer = tf.constant_initializer(0.1)				# initializer for bias
+learning_rate = 0.0001							# learning rate for the optimizater
 
 # Q network architecture (conv(6x6x16) -> RELU -> conv(4x4x32) -> RELU -> flatten -> hidden layer (256 units) -> RELU -> output layer(number of actions))
 def q_network(X_state, scope):
@@ -50,20 +50,20 @@ def q_network(X_state, scope):
 	return outputs, trainable_vars
 
 X_state = tf.placeholder(tf.float32, shape=[None, input_height, input_width, input_channels])	# placeholder for the state
-target_Q_value, stationary_target_vars = q_network(X_state, scope="target_q_networks")			# the Q value from the stationary network
-Q_value, current_target_vars = q_network(X_state, scope="q_networks")							# the Q value from the current network
+target_Q_value, stationary_target_vars = q_network(X_state, scope="target_q_networks")		# the Q value from the stationary network
+Q_value, current_target_vars = q_network(X_state, scope="q_networks")				# the Q value from the current network
 
 # copy operation to update the statinary network by copying over from current network every 5k steps
 copy = [stationary_target_var.assign(current_target_vars[var_name]) for var_name, stationary_target_var in stationary_target_vars.items()]
 update_stationary_target = tf.group(*copy)
 
 with tf.variable_scope("train"):
-	X_action = tf.placeholder(tf.int32, shape=[None])											# placeholder for the action
-	y = tf.placeholder(tf.float32, shape=[None])												# placeholder for the true Q value
-	qvalue = tf.reduce_sum(tf.multiply(Q_value, tf.one_hot(X_action, n_outputs)),axis=1)		# calculate the Q value
-	cost = tf.reduce_mean(tf.square(y - qvalue))												# define the cost function (differences between the true and estimated Q value)
-	optimizer = tf.train.AdamOptimizer(learning_rate)											# optimizer used is ADAM, can be changed for other e.g. SGD
-	training_op = optimizer.minimize(cost)														# minimize the cost function
+	X_action = tf.placeholder(tf.int32, shape=[None])					# placeholder for the action
+	y = tf.placeholder(tf.float32, shape=[None])						# placeholder for the true Q value
+	qvalue = tf.reduce_sum(tf.multiply(Q_value, tf.one_hot(X_action, n_outputs)),axis=1)	# calculate the Q value
+	cost = tf.reduce_mean(tf.square(y - qvalue))						# define the cost function (differences between the true and estimated Q value)
+	optimizer = tf.train.AdamOptimizer(learning_rate)					# optimizer used is ADAM, can be changed for other e.g. SGD
+	training_op = optimizer.minimize(cost)							# minimize the cost function
 
 
 # preprocess observation to convert RGB into greyscale, remove some extra useless blank on the side, and resize. (Mainly to speed up computation and improve performance)
@@ -139,5 +139,4 @@ with tf.Session() as sess:
 	init.run()
 	saver = tf.train.Saver()
 	saver.restore(sess, "./model_PacMan/MsPacman")
-
 	evaluation()
