@@ -3,7 +3,7 @@ Deep Q-Network (DQN) to play classic Atari Games
 
 3 Atari games (MsPacman, Boxing and Pong) are being tested with the same architecture and achieved decent performance.
 
-<br><br/>
+<br>
 The key details of the architecture is as follow:
 
 <dl>
