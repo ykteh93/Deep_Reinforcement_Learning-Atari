@@ -6,6 +6,7 @@
 #				This file is only for evaluation, not for training				    #
 #####################################################################################################################
 
+# Due to the limited time when running this games, the input height and width are further reduced into 28
 
 import gym
 import numpy as np
