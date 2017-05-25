@@ -1,7 +1,9 @@
 # Deep_Reinforcement_Learning
 Deep Q-Network (DQN) to play classic Atari Games
 
-3 Atari games (MsPacman, Boxing and Pong) are being tested with the same architecture of Q-learning
+3 Atari games (MsPacman, Boxing and Pong) are being tested with the same architecture of Q-learning.
+
+Note: This is a smaller network with shorter training times than commonly used in order to accomodate the training with normal PC.
 
 <br><br/>
 The key details of the architecture is as follow:
@@ -24,10 +26,20 @@ The key details of the architecture is as follow:
   <li>1 million environmental steps is used as the duration of training (This can be increased for better performance).</li>
   <li>For more stable gradient update, several modifications are added as follow:</li>
   <ul>
-  <li>Experience replay to store transitions</li>
-  <li>Separate stationary target network (updated every 5k steps)</li>
+  <li>Experience replay to store transitions.</li>
+  <li>Separate stationary target network (updated every 5k steps).</li>
   <li>Rewards is clipped to be between -1 and 1.</li>
   </ul>
   </ul>
   
 </dl>
+
+<br><br/>
+
+The required library:
+* TensorFlow
+* numpy
+* matplotlib
+* gym
+* random
+* skimage
