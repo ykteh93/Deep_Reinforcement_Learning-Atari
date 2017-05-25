@@ -4,7 +4,7 @@ Deep Q-Network (DQN) to play classic Atari Games
 3 Atari games (MsPacman, Boxing and Pong) are being tested with the same architecture of Q-learning
 
 <br><br/>
-The details of the architecture is as follow:
+The key details of the architecture is as follow:
 
 <dl>
   <dt>State Space:</dt>
@@ -16,6 +16,18 @@ The details of the architecture is as follow:
    <dt>Agent:</dt>
   <ul>
   <li>Convolutional neural network (CNN) is used to approximate Q-function.</li>
-  <li>input &rarr; conv(6 x 6 x 16) + stride 2 + RELU &rarr; conv(4 x 4 x 32) + stride 2 + RELU &rarr; flatten &rarr; hidden layer (256 units) + RELU &rarr; linear layer &rarr; action probabilities</li>
+  <li>input &rarr; conv (6 x 6 x 16) + stride 2 + RELU &rarr; conv (4 x 4 x 32) + stride 2 + RELU &rarr; flatten &rarr; hidden layer (256 units) + RELU &rarr; linear layer &rarr; state-action value function</li>
   </ul>
+
+  <dt>Training:</dt>
+  <ul>
+  <li>1 million environmental steps is used as the duration of training (This can be increased for better performance).</li>
+  <li>For more stable gradient update, several modifications are added as follow:</li>
+  <ul>
+  <li>Experience replay to store transitions</li>
+  <li>Separate stationary target network (updated every 5k steps)</li>
+  <li>Rewards is clipped to be between -1 and 1.</li>
+  </ul>
+  </ul>
+  
 </dl>
