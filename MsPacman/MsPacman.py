@@ -26,7 +26,7 @@ discount_rate = 0.99					# discount rate (control the value of reward for near f
 test_episode = 100					# number of test episodes to run for evaluation as each episode is stostatic
 replay_memory_size = 250000				# size of the Experience Replay to store the previous episodes 
 replay_memory = deque()					# store of the details of episodes in Experience Replay
-input_height = input_width = 28				# size of the reduced image height and width 
+input_height = input_width = 60				# size of the reduced image height and width 
 input_channels = 4					# the number of frame to stack together in order to capture the motion
 conv_kernel_output_channel = [16, 32]			# output channel of kernel/filter for CNN
 conv_kernel_sizes = [(6,6), (4,4)]			# size of the kernel/filter for CNN
