@@ -8,7 +8,7 @@ The details of the architecture is as follow:
 
 <dl>
   <dt> 1. State Space:</dt>
-  <dd> * hello </dd>
+  <li>Coffee</li>
   
    <dt> 2. Agent:</dt>
   <dd> * </dd>
