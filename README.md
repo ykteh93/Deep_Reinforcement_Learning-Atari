@@ -33,7 +33,7 @@ The key details of the architecture is as follow:
 
 <dl>
   <dt>Note:</dt>
-  1. This is a smaller network with shorter training times than commonly used for accomodating the training with normal PC.
+  1. This is a smaller network with shorter training times than commonly used for accomodating the training with normal PC.<br><br/>
   2. The saved model for each games after training are included (Run the Load_Model.py file for each games)
 </dl>
  
