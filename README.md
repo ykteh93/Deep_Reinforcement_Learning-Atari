@@ -16,6 +16,6 @@ The details of the architecture is as follow:
    <dt>Agent:</dt>
   <ul>
   <li>Convolutional neural network (CNN) is used to approximate Q-function.</li>
-  <li>input</li>
+  <li>input &rarr; conv(6 x 6 x 16) + stride 2 + RELU &rarr; conv(4 x 4 x 32) + stride 2 + RELU &rarr; flatten &rarr; hidden layer (256 units) + RELU &rarr; linear layer &rarr; action probabilities</li>
   </ul>
 </dl>
