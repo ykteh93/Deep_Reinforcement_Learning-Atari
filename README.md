@@ -1,4 +1,4 @@
-# Deep_Reinforcement_Learning
+# Deep Reinforcement Learning
 Deep Q-Network (DQN) to play classic Atari Games
 
 3 Atari games (MsPacman, Boxing and Pong) are being tested with the same architecture and achieved decent performance.
