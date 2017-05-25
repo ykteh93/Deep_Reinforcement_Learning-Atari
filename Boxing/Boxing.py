@@ -192,7 +192,7 @@ with tf.Session() as sess:
 			cummulative_loss = np.array([])
 
 			# Store the final model
-			saver.save(sess, './model_Final_PacMan/MsPacman')
+			saver.save(sess, './model_Final_Boxing/Boxing')
 			break
 
 		# Update the stationary target by copying the current network to the stationary network every 5k steps
@@ -211,7 +211,7 @@ with tf.Session() as sess:
 
 				# Store the Best Model 
 				if average_clip_return > max_score:
-					saver.save(sess, './model_PacMan/MsPacman')
+					saver.save(sess, './model_Boxing/Boxing')
 					max_score = average_clip_return
 
 				run_evaluation = False
