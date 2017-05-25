@@ -8,7 +8,9 @@ The details of the architecture is as follow:
 
 <dl>
   <dt> 1. State Space:</dt>
+  <ul>
   <li>Coffee</li>
+  </ul>
   
    <dt> 2. Agent:</dt>
   <dd> * </dd>
