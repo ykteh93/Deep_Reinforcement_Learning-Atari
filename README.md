@@ -7,11 +7,15 @@ Deep Q-Network (DQN) to play classic Atari Games
 The details of the architecture is as follow:
 
 <dl>
-  <dt> 1. State Space:</dt>
+  <dt>State Space:</dt>
   <ul>
-  <li>Coffee</li>
+  <li>Environment observation is converted to greyscale and reduced in size (60 x 60) to conserve memory.</li>
+  <li>4 consecutive frames are stacked together (60 x 60 x 4) in order to capture the motion.</li>
   </ul>
   
-   <dt> 2. Agent:</dt>
-  <dd> * </dd>
+   <dt>Agent:</dt>
+  <ul>
+  <li>Convolutional neural network (CNN) is used to approximate Q-function.</li>
+  <li>input</li>
+  </ul>
 </dl>
