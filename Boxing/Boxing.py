@@ -21,7 +21,7 @@ from collections import deque
 from tensorflow.contrib.layers import convolution2d, fully_connected
 
 env = gym.make("Boxing-v3")				# atari games selection
-max_score = 0						# initialized the best score as 0, so that 
+max_score = 0						# initialized the best score of the game as 0 (for saving model with best score)
 n_steps = 1000000					# train for 1 millions steps (can increase for more if have better GPU)
 batch_size = 64						# mini batch size used for optimization
 discount_rate = 0.99					# discount rate (control the value of reward for near future or distant future)
