@@ -40,11 +40,11 @@ The key details of the architecture is as follow:
   <dt>Note:</dt>
   1. This project is from one of my modules (Advanced Topics in Machine Learning) at UCL, taught by Google DeepMind.<br>
   2. So, it is a smaller network with shorter training times than commonly used for accomodating the training with normal PC.<br>
-  3. The saved model for each games after training are included <i>(Run the Load_Model.py file for each games to evaluate)</i>.
+  3. Due to the requirement of the module, the codes are separated for each of the game but there is only minor differences.<br>
+  4. The saved model for each games after training are included <i>(Run the Load_Model.py file for each games to evaluate)</i>.
   <ul style="list-style-type:circle">
   <li>This performance is still far from optimal because it is only trained with 1 million environmental steps.</li>
   </ul>
-  4. Due to the requirement of the module, the codes are separated for each of the game but there is only minor differences.
 </dl>
  
 
