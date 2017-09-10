@@ -44,6 +44,7 @@ The key details of the architecture is as follow:
   <ul style="list-style-type:circle">
   <li>This performance is still far from optimal because it is only trained with 1 million environmental steps.</li>
   </ul>
+  4. Due to the requirement of the module, the codes are separated for each of the game but there is only minor differences.
 </dl>
  
 
